@@ -3,6 +3,7 @@ const CACHE_NAME = "bclock-caches-v1";
 // Cache targets
 const urlsToCache = [
   "js/block.js",
+  "js/bcalendar.js",
   "index.html",
 ];
 
@@ -25,5 +26,3 @@ self.addEventListener("fetch", (event) => {
       })
   );
 });
-
-console.log("sw.js end");
