@@ -1,8 +1,8 @@
 {
   "name": "BClock",
   "short_name": "BClock",
-  "theme_color": "#ff0000",
-  "background_color": "#0000ff",
+  "theme_color": "#0aafe6",
+  "background_color": "#15151e",
   "display": "standalone",
   "start_url": "index.html",
   "icons": [
