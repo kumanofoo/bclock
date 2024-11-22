@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <link rel="manifest" href="manifest.json" />
+    <title>BClock</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <div class="container" id="display-area">
+      <div class="bclock-container">
+      <div class="bclock">
+        <p class="bclock-date"></p>
+        <p class="bclock-time"></p>
+        <p><button class="lock-button" data-status="off">Wake Lock</button></p>
+      </div></div>
+      <div class="calendar">
+        <header>
+          <pre class="left">◀</pre>
+          <div class="header-display">
+            <p class="display">""</p>
+          </div>
+          <pre class="right">▶</pre>
+        </header>
+        <div class="week">
+          <div>Su</div>
+          <div>Mo</div>
+          <div>Tu</div>
+          <div>We</div>
+          <div>Th</div>
+          <div>Fr</div>
+          <div>Sa</div>
+        </div>
+        <div class="days">
+          <!--days will be filled here-->
+        </div>
+      </div>
+      <div class="display-selected">
+        <p class="selected"></p>
+      </div>
+    </div>
+    <script>
+      if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function() {
+              navigator.serviceWorker.register("./js/sw.js").then(registration => {
+                  console.log("Serviceworker registration successful.");
+              }).catch(err => {
+                  console.log("ServiceWorker registration failed.", err);
+              });
+          });
+      }
+      else {
+          console.log("ServiceWroker not found");
+      }
+    </script>
+    <script src="js/bclock.js"></script>
+    <script src="js/bcalendar.js"></script>
+  </body>
+</html>
