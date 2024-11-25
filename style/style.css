@@ -5,6 +5,7 @@
 :root {
   --white: #fff;
   --main: #eaedf0;
+  --holiday: #e6410a;
   --shadow: 0 0 20px #0aafe6;
   --shadow-accent: 0 0 20px #e6410a;
   --back: #15151e;
@@ -93,6 +94,9 @@ pre {
 .current-date {
   background-color: var(--today);
   color: var(--main);
+}
+.holiday {
+  color: var(--holiday);
 }
 
 .bclock-container {

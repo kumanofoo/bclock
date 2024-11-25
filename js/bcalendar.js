@@ -54,6 +54,10 @@ function displayCalendar() {
         ) {
             div.classList.add("current-date");
         }
+        let today = `${currentDate.getFullYear()}/${currentDate.getMonth()+1}/${currentDate.getDate()}`;
+        if (today in HOLIDAYS) {
+            div.classList.add("holiday");
+        }
     }
 }
 
