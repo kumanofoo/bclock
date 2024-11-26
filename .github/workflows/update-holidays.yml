@@ -5,6 +5,8 @@ on:
     - cron: '0 0 3 * *'
 jobs:
   create_pull_request:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
