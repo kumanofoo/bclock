@@ -32,7 +32,7 @@ jobs:
       - name: Create Pull Request
         if: steps.commit.outcome == 'success'
         env:
-          GH_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh pr create \
             -B main \
