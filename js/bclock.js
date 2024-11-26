@@ -14,9 +14,14 @@ const bclock = () => {
   document.querySelector(".bclock-date").innerText = today;
   document.querySelector(".bclock-time").innerText = time;
   let container = document.querySelector(".container");
+
+  // Events
   let shadow = getComputedStyle(container).getPropertyValue("--shadow");
   if (min === '00') {
     shadow = getComputedStyle(container).getPropertyValue("--shadow-accent");
+    if (sec === '00') {
+      updateCalendar();
+    }
   }
   container.style.textShadow = shadow;
 }

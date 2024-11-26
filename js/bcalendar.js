@@ -11,10 +11,10 @@ let month = date.getMonth();
 let tomorrow = new Date(year, month, date.getDate()+1);
 
 
-function updateDate() {
+function updateCalendar() {
     date = new Date();
     year = date.getFullYear();
-    month = date.getMonth(); 
+    month = date.getMonth();
     tomorrow = new Date(year, month, date.getDate()+1);
     displayCalendar();
 }
@@ -62,17 +62,13 @@ function displayCalendar() {
 }
 
 displayCalendar();
-setTimeout(() => { // first time
-    updateDate();
-    setInterval(updateDate, 24*60*60*1000); // next time
-}, tomorrow.getTime() - date.getTime());
 
 let otherMonth = null;
 function returnToThisMonth() {
     if (otherMonth !== null) {
         clearTimeout(otherMonth);
     }
-    otherMonth = setTimeout(updateDate, 3*60*1000);
+    otherMonth = setTimeout(updateCalendar, 3*60*1000); // 3 min
 }
 
 previous.addEventListener("click", () => {
