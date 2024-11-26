@@ -21,6 +21,8 @@ jobs:
         run: |
           DATE=`date +"%Y%m%d"`
           BRANCH="update_$DATE"
+          git config --local user.email "kumanofoo@gmail.com"
+          git config --local user.name "kumanofoo"
           git add js/holidays.js
           git switch -c $BRANCH
           git commit -m "fix: update holidays"
