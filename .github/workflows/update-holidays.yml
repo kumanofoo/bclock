@@ -36,5 +36,5 @@ jobs:
         run: |
           gh pr create \
             --base main \
-            --ttitle "Update holidays" \
+            --title "Update holidays" \
             --body "New holidays was released"
