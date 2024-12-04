@@ -1,5 +1,11 @@
 /* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@font-face {
+  font-family: linefont;
+  font-display: block;
+  src: url(/font/Linefont[wdth,wght].woff2) format('woff2');
+}
+
 
 /*variables*/
 :root {
@@ -135,4 +141,18 @@ pre {
   color: #6a8688;
   border: solid 1px #45454e;
   border-radius: 5px;
+}
+
+.air-graph {
+  --wght: 100;
+  --wdth: 90;
+  font-family: linefont;
+  font-variation-settings: 'wght' var(--wght), 'wdth' var(--wdth);
+  line-height: 1.4; /* match selection, optional */
+  font-size: 0.5em;
+}
+
+.air {
+  display: flex;
+  justify-content: space-around;
 }
