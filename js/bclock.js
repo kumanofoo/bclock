@@ -23,6 +23,9 @@ const bclock = () => {
       updateCalendar();
     }
   }
+  if (sec === '00') {
+    updateAirQuality(); // update air quality
+  }
   container.style.textShadow = shadow;
 }
 
@@ -98,13 +101,12 @@ co2.unitName = "ppm";
 co2.jsonKey = "co2_ppm";
 co2.container = document.querySelector("#co2-container");
 const airQualityItem = [temperature, humidity, co2];
-const airQuality = async () => {
+const updateAirQuality = async () => {
   const url = window.location.origin + "/air_quality.json";
   try {
     const response = await fetch(url);
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
       airQualityItem.forEach((element) => {
         let v = element.jsonKey in json ? json[element.jsonKey] : null;
         if (v !== null) {
@@ -147,7 +149,6 @@ window.onload = () => {
   });
 
   bclock();
+  updateAirQuality();
   setInterval(bclock, 1000);
-  airQuality();
-  setInterval(airQuality, 60000);
 }
