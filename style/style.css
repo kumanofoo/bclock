@@ -3,7 +3,7 @@
 @font-face {
   font-family: linefont;
   font-display: block;
-  src: url(/font/Linefont[wdth,wght].woff2) format('woff2');
+  src: url(../font/Linefont[wdth,wght].woff2) format('woff2');
 }
 
 

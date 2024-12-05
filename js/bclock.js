@@ -102,9 +102,9 @@ co2.jsonKey = "co2_ppm";
 co2.container = document.querySelector("#co2-container");
 const airQualityItem = [temperature, humidity, co2];
 const updateAirQuality = async () => {
-  const url = window.location.origin + "/air_quality.json";
+  const url = window.location + "/air_quality.json";
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {cache: "no-store"});
     if (response.ok) {
       const json = await response.json();
       airQualityItem.forEach((element) => {
