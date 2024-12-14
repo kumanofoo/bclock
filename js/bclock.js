@@ -19,13 +19,13 @@ const bclock = () => {
   let shadow = getComputedStyle(container).getPropertyValue("--shadow");
   if (min === '00') {
     shadow = getComputedStyle(container).getPropertyValue("--shadow-accent");
-    if (sec === '00') {  // update per hour
-      updateCalendar();
-      updatePeak();
-    }
   }
   if (sec === '00') {  // update per minute
     updateAirQuality();
+    if (min === '00') {  // update per hour
+      updateCalendar();
+      updatePeak();
+    }
   }
   container.style.textShadow = shadow;
 }
@@ -142,11 +142,13 @@ const updatePeak = async () => {
     const response = await fetch(cfg.url, {cache: "no-store"});
     if (response.ok) {
       const peak = await response.json();
+      bclockContainter.classList.remove("lava");
       if ("highest" in peak) {
         if (peak["highest"] >= cfg.highest) {
           bclockContainter.classList.add("lava");
         }
       }
+      bclockContainter.classList.remove("frost");
       if ("lowest" in peak) {
         if (peak["lowest"] <= cfg.lowest) {
           bclockContainter.classList.add("frost");
