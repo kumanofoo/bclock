@@ -19,12 +19,13 @@ const bclock = () => {
   let shadow = getComputedStyle(container).getPropertyValue("--shadow");
   if (min === '00') {
     shadow = getComputedStyle(container).getPropertyValue("--shadow-accent");
-    if (sec === '00') {
+    if (sec === '00') {  // update per hour
       updateCalendar();
+      updatePeak();
     }
   }
-  if (sec === '00') {
-    updateAirQuality(); // update air quality
+  if (sec === '00') {  // update per minute
+    updateAirQuality();
   }
   container.style.textShadow = shadow;
 }
@@ -33,7 +34,6 @@ const wakeButton = document.querySelector('[data-status]');
 const changeUI = (status = 'acquired' ) => {
   const acquired = status == 'acquired' ? true : false;
   wakeButton.dataset.status = acquired ? 'on' : 'off';
-  //wakeButton.textContent = `Turn Wake Lock ${acquired ? 'OFF' : 'ON'}`;
 }
 
 if ('wakeLock' in navigator) {
@@ -47,7 +47,6 @@ if ('wakeLock' in navigator) {
       });
     } catch {
       wakeButton.dataset.status = 'off';
-      //wakeButton.textContent = 'Turn Wake Lock ON';
     }
   } // requestWakeLock()
 
@@ -102,9 +101,9 @@ co2.jsonKey = "co2_ppm";
 co2.container = document.querySelector("#co2-container");
 const airQualityItem = [temperature, humidity, co2];
 const updateAirQuality = async () => {
-  const url = window.location + "/air_quality.json";
+  const cfg = bclockConfig.bClock.air; // from js/config.js
   try {
-    const response = await fetch(url, {cache: "no-store"});
+    const response = await fetch(cfg.url, {cache: "no-store"});
     if (response.ok) {
       const json = await response.json();
       airQualityItem.forEach((element) => {
@@ -136,6 +135,33 @@ const updateAirQuality = async () => {
   }
 }
 
+const bclockContainter = document.querySelector(".bclock-container");
+const updatePeak = async () => {
+  const cfg = bclockConfig.bClock.peak; // from js/config.js
+  try {
+    const response = await fetch(cfg.url, {cache: "no-store"});
+    if (response.ok) {
+      const peak = await response.json();
+      if ("highest" in peak) {
+        if (peak["highest"] >= cfg.highest) {
+          bclockContainter.classList.add("lava");
+        }
+      }
+      if ("lowest" in peak) {
+        if (peak["lowest"] <= cfg.lowest) {
+          bclockContainter.classList.add("frost");
+        }
+      }
+    } else {
+      bclockContainter.classList.remove("lava");
+      bclockContainter.classList.remove("frost");
+    }
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 window.onload = () => {
   let displayArea = document.querySelector("#display-area");
   displayArea.addEventListener('dblclick', () => {
@@ -150,5 +176,6 @@ window.onload = () => {
 
   bclock();
   updateAirQuality();
+  updatePeak();
   setInterval(bclock, 1000);
 }

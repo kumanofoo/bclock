@@ -12,13 +12,15 @@
   --white: #fff;
   --main: #eaedf0;
   --holiday: #e6410a;
-  --shadow: 0 0 20px #0aafe6;
-  --shadow-accent: 0 0 20px #e6410a;
+  --shadow: 0 0 0.4em #0aafe6;
+  --shadow-accent: 0 0 0.4em #e6410a;
   --back: #15151e;
   --today: #404050;
   --accent: #daf6ff;
   --accent-2: #ebedf0;
   --font-size: 5vw; /* base font size */
+  --frost: #d0d0ff;
+  --lava: #ffa040;
 }
 
 /*styles*/
@@ -110,6 +112,20 @@ pre {
   justify-content: center;
   align-items: center;
 }
+.frost {
+  background-image: url("../images/frost.jpg");
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: darken;
+  box-shadow: inset 0 0 1em var(--frost);
+}
+.lava {
+  background-image: url("../images/lava.jpg");
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: darken;
+  box-shadow: inset 0 0 1em var(--lava);
+}
 .bclock {
   margin: 0.5em;
   font-family: 'Share Tech Mono', monospace;
@@ -135,7 +151,7 @@ pre {
 }
 
 .lock-button {
-  background: var(--back);
+  background: rgba(0,0,0,0.3);
   font-size: 0.7em;
   padding: 0.3em;
   color: #6a8688;
