@@ -66,6 +66,18 @@
       else {
           console.log("ServiceWroker not found");
       }
+      const updateFontSize = () => {
+	  let rootElement = document.documentElement;
+	  let width = rootElement.clientWidth;
+          let aspect = rootElement.clientHeight/rootElement.clientWidth;
+	  if (aspect < 1.5 && aspect >= 1.0) {
+	      width = rootElement.clientHeight/1.5;
+	  }
+	  const fontSize = width * 0.05;
+	  document.documentElement.style.setProperty('--font-size', `${fontSize}px`);
+      };
+      updateFontSize();
+      window.addEventListener('resize', updateFontSize);
     </script>
     <script src="js/config.js"></script>
     <script src="js/holidays.js"></script>
