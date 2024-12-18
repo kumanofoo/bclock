@@ -2,9 +2,14 @@
 const CACHE_NAME = "bclock-caches-v1";
 // Cache targets
 const urlsToCache = [
-  "js/block.js",
-  "js/bcalendar.js",
-  "index.html",
+  "bclock.js",
+  "bcalendar.js",
+  "config.js",
+  "holidays.js",
+  "../index.html",
+  "../images/icon-192x192.png",
+  "../images/lava.jpg",
+  "../images/frost.jpg",
 ];
 
 self.addEventListener("install", (event) => {
