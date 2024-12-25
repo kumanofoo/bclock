@@ -1,5 +1,7 @@
 // Cache name
-const CACHE_NAME = "bclock-caches-v1";
+const CACHE_NAME = "bclock";
+const VERSION="1.0.0";
+const CACHE_KEYS = [CACHE_NAME + VERSION];
 // Cache targets
 const urlsToCache = [
   "bclock.js",
@@ -10,6 +12,7 @@ const urlsToCache = [
   "../images/icon-192x192.png",
   "../images/lava.jpg",
   "../images/frost.jpg",
+  "../style/style.css",
 ];
 
 self.addEventListener("install", (event) => {
@@ -19,6 +22,24 @@ self.addEventListener("install", (event) => {
       .then((cache) => {
         return cache.addAll(urlsToCache);
       })
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(keys.filter(key => {
+        return !CACHE_KEYS.includes(key);
+      }).map(key => {
+        if (key.indexOf(CACHE_NAME) == 0) {
+          console.log("ServiceWorker: " + key + " remove");
+          return caches.delete(key);
+        } else {
+          console.log("ServiceWorker: " + key + " no remove");
+          return true;
+        }
+      }));
+    })
   );
 });
 

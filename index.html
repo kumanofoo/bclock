@@ -3,20 +3,22 @@
   <head>
     <meta charset=utf-8>
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="BClock">
     <meta name="apple-mobile=web=app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="images/icon-192x192.png">
     <link rel="manifest" href="manifest.json" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
     <title>BClock</title>
     <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
     <div class="container" id="display-area">
-      <div class="bclock-container">
+      <div class="bclock-container" data-peak="">
       <div class="bclock">
         <p class="bclock-date"></p>
         <p class="bclock-time"></p>
-        <div class="air">
+        <div class="air" id="air-container" data-air="">
           <div class="temperature" id="temperature-container">
             <div class="number" id="air-temperature"></div>
             <div class="air-graph" id="air-temperature-graph"></div>

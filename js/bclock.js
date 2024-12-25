@@ -78,6 +78,7 @@ const toPercent = (minimum, maximum, value) => {
   return parseInt((v - minimum)*100/(maximum - minimum));
 }
 
+const airContainer = document.querySelector("#air-container");
 const temperature = document.querySelector("#air-temperature");
 temperature.graph = document.querySelector("#air-temperature-graph");
 temperature.minimum = 15;
@@ -102,6 +103,7 @@ co2.container = document.querySelector("#co2-container");
 const airQualityItem = [temperature, humidity, co2];
 const updateAirQuality = async () => {
   const cfg = bclockConfig.bClock.air; // from js/config.js
+  if (airContainer.dataset.air === "disable") return;
   try {
     const response = await fetch(cfg.url, {cache: "no-store"});
     if (response.ok) {
@@ -121,6 +123,7 @@ const updateAirQuality = async () => {
           element.container.style.display = "none";
         }  
       });
+      airContainer.dataset.air = "enable";
     }
     else {
       airQualityItem.forEach((element) => {
@@ -128,6 +131,10 @@ const updateAirQuality = async () => {
         element.graph.innerText = "";
         element.container.style.display = "none";
       })
+      if (airContainer.dataset.air === "") {
+        airContainer.dataset.air = "disable";
+        console.log("Air quality is disabled.");
+      }
     }
   }
   catch (error) {
@@ -138,6 +145,8 @@ const updateAirQuality = async () => {
 const bclockContainter = document.querySelector(".bclock-container");
 const updatePeak = async () => {
   const cfg = bclockConfig.bClock.peak; // from js/config.js
+
+  if (bclockContainter.dataset.peak === "disable") return;
   try {
     const response = await fetch(cfg.url, {cache: "no-store"});
     if (response.ok) {
@@ -154,9 +163,14 @@ const updatePeak = async () => {
           bclockContainter.classList.add("frost");
         }
       }
+      bclockContainter.dataset.peak = "enable";
     } else {
       bclockContainter.classList.remove("lava");
       bclockContainter.classList.remove("frost");
+      if (bclockContainter.dataset.peak === "") {
+        bclockContainter.dataset.peak = "disable";
+        console.log("Peak is disabled.");
+      }
     }
   }
   catch (error) {
