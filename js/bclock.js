@@ -31,19 +31,15 @@ const bclock = () => {
 }
 
 const wakeButton = document.querySelector('[data-status]');
-const changeUI = (status = 'acquired' ) => {
-  const acquired = status == 'acquired' ? true : false;
-  wakeButton.dataset.status = acquired ? 'on' : 'off';
-}
 
 if ('wakeLock' in navigator) {
   let wakeLock = null;
   const requestWakeLock = async () => {
     try {
       wakeLock = await navigator.wakeLock.request('screen');
-      changeUI();
+      wakeButton.dataset.status = 'on';
       wakeLock.addEventListener('release', () => {
-        changeUI('released');
+        wakeButton.dataset.status = 'off';
       });
     } catch {
       wakeButton.dataset.status = 'off';
@@ -53,15 +49,17 @@ if ('wakeLock' in navigator) {
   wakeButton.addEventListener('click', () => {
     if (wakeButton.dataset.status === 'off') {
       requestWakeLock();
-      wakeButton.style.color="#daf6ff";
-      wakeButton.style.textShadow="0 0 20px $0aafe6";
+      wakeButton.style.color="var(--accent)";
+      wakeButton.style.textShadow="var(--shadow)";
+      wakeButton.style.opacity="1.0";
     } else {
       wakeLock.release()
       .then(() => {
         wakeLock = null;
-        wakeButton.style.color="#618686";
+        wakeButton.style.color="var(--accent)";
         wakeButton.style.textShadow="";
-        })
+        wakeButton.style.opacity="0.5";
+      })
     }
   })
 
@@ -195,3 +193,11 @@ window.onload = () => {
   updatePeak();
   setInterval(bclock, 1000);
 }
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState  == 'visible') {
+    bclock();
+    updateAirQuality();
+    updatePeak();
+  }
+});
