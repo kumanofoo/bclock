@@ -198,6 +198,7 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState  == 'visible') {
     bclock();
     updateAirQuality();
+    updateCalendar();
     updatePeak();
   }
 });
