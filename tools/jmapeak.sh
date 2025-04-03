@@ -28,6 +28,8 @@ area_temps=$(jq -r '.temps[]' <<< $area)
 time_define_arr=($time_define)
 area_temps_arr=($area_temps)
 current_ts=$(date +%s)
+lowest=""
+highest=""
 for i in "${!time_define_arr[@]}"; do
     temp_ts=$(date -d "${time_define_arr[i]}" +%s)
     if [ "$current_ts" -lt "$temp_ts" ]; then
@@ -39,7 +41,7 @@ for i in "${!time_define_arr[@]}"; do
 	    highest_dt=${time_define_arr[i]}
 	fi
     fi
-    if [ -v "$lowest" ] && [ -v "$highest" ]; then
+    if [ -n "$lowest" ] && [ -n "$highest" ]; then
 	break
     fi
 done
