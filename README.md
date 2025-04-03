@@ -11,7 +11,7 @@ https://kumanofoo.github.io/bclock/
 ```console
 $ git clone https://github.com/kumanofoo/bclock.git
 $ cd bclock
-$ sudo ./setup.sh
+$ sudo bash setup.sh
 ```
 
 ## Installing nginx
@@ -25,7 +25,7 @@ server {
     :
     :
   location /bclock/ {
-    root /opt;
+    alias /opt/bclock/html/;
     index index.html;
   }
     :
@@ -108,7 +108,7 @@ server {
   server_name server.domain.example.com;
 
   location /bclock/ {
-    root /opt;
+    alias /opt/bclock/html/;
     index index.html;
   }
 }

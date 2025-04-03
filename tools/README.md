@@ -70,7 +70,7 @@ $ bash tools/jmapeak.sh 140000 46106
 
 ## Setting Up a Cron Job
 
-To run this script every 3 hours and output the result to `/opt/bclock/peak.json`, follow these steps:
+To run this script every 3 hours and output the result to `/opt/bclock/html/peak.json`, follow these steps:
 
 1. Open the crontab file for editing:
 
@@ -80,16 +80,18 @@ To run this script every 3 hours and output the result to `/opt/bclock/peak.json
 
 2. Add the following line to the crontab file:
 
+    `ompeak.sh`
     ```sh
-    0 */3 * * * /usr/bin/bash /opt/bclock/tools/ompeak.sh 35.6895:139.6917 > /opt/bclock/peak.json
-
-    # OR
-
-    0 */3 * * * /usr/bin/bash /opt/bclock/tools/jmapeak.sh 140000 46106 > /opt/bclock/peak.json
+    0 */3 * * * /usr/bin/bash /opt/bclock/tools/ompeak.sh 35.6895:139.6917 > /opt/bclock/html/peak.json
     ```
 
-    This line schedules the script to run every 3 hours and redirects the output to `/opt/bclock/peak.json`. Make sure to replace `/usr/bin/bash` with the path to your Bash interpreter if it's different.
+    `jmapeak.sh`
+    ```sh
+    0 */3 * * * /usr/bin/bash /opt/bclock/tools/jmapeak.sh 140000 46106 > /opt/bclock/html/peak.json
+    ```
+
+    This line schedules the script to run every 3 hours and redirects the output to `/opt/bclock/html/peak.json`. Make sure to replace `/usr/bin/bash` with the path to your Bash interpreter if it's different.
 
 3. Save and close the crontab file.
 
-Now, the script will run every 3 hours and update `/opt/bclock/peak.json` with the latest maximum and minimum temperatures.
+Now, the script will run every 3 hours and update `/opt/bclock/html/peak.json` with the latest maximum and minimum temperatures.
