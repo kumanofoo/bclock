@@ -71,8 +71,8 @@ If `highest` in `peak.json` is 30 or above and `lowest` is -4 or below, the cloc
 }
 ```
 
-[!NOTE]
-`tools/ompeak.sh` or `tools/jmapeak.sh` can be used to retrieve the temperature from [Open-meteo](https://open-meteo.com/) or [Japan Meteorological Agency](https://www.jma.go.jp/).
+> [!NOTE]
+> `tools/ompeak.sh` or `tools/jmapeak.sh` can be used to retrieve the temperature from [Open-meteo](https://open-meteo.com/) or [Japan Meteorological Agency](https://www.jma.go.jp/).
 
 ### Create Server Certificate
 Create a key pair for the server and server certificate.
