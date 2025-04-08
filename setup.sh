@@ -16,7 +16,7 @@ font='Linefont[wdth,wght].woff2'
 images="icon-192x192.png frost.jpg lava.jpg"
 js="bcalendar.js bclock.js config.js holidays.js sw.js"
 style="style.css"
-tools="ompeak.sh jmapeak.sh jmacode.sh"
+tools="ompeak.sh jmapeak.sh jmacode.sh room.sh room.service room-example.conf"
 
 function copy_files() {
     files=$1

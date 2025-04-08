@@ -34,8 +34,7 @@ sudo apt-get install mosquitto-clients
 ### room.sh
 1. Copy the files.
 ```console
-sudo cp room.sh room.service /opt/bclock/tools
-sudo cp room-example.conf /opt/bclock/tools/room.conf
+sudo cp /opt/bclock/tools/room-example.conf /opt/bclock/tools/room.conf
 ```
 
 2. Edit the configuration file `room.conf`.
