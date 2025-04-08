@@ -1,0 +1,12 @@
+[Unit]
+Description=Room Air Quality Subscriber
+After=network-online.target
+
+[Service]
+ExecStart=/opt/bclock/tools/room.sh
+Restart=always
+StandardOutput=append:/var/log/room.log
+StandardError=append:/var/log/room.err
+
+[Install]
+WantedBy=multi-user.target
